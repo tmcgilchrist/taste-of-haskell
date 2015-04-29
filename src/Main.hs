@@ -29,8 +29,8 @@ putSomeData conn bucket key value = do
 
 getSomeData conn bucket key = do
   putStrLn ("Get: bucket=" ++ show bucket ++ ", key = " ++ show key)
-  b <- RB.getBucket conn testBucket
-  print b
+  b <- RB.get conn testBucket key Default
+  maybe (print "No value") (print) b
   putStrLn "=========================="
 
 deleteSomeData conn bucket key = do
